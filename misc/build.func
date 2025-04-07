@@ -290,7 +290,7 @@ update_motd_ip() {
 # Function to download & save header files
 get_header() {
     local app_name=$(echo "${APP,,}" | tr -d ' ')
-    local header_url="https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main/ct/headers/${app_name}"
+    local header_url="https://raw.githubusercontent.com/chrjabs/ProxmoxVE/main/ct/headers/${app_name}"
     local local_header_path="/usr/local/community-scripts/headers/${app_name}"
 
     mkdir -p "$(dirname "$local_header_path")"
@@ -1162,7 +1162,7 @@ lxc.mount.entry: /dev/dri/renderD128 dev/dri/renderD128 none bind,optional,creat
 EOF
     fi
   else
-    if [[ "$APP" == "Channels" || "$APP" == "Emby" || "$APP" == "ErsatzTV" || "$APP" == "Frigate" || "$APP" == "Jellyfin" || "$APP" == "Plex" || "$APP" == "Scrypted" || "$APP" == "Tdarr" || "$APP" == "Unmanic" || "$APP" == "Ollama" || "$APP" == "FileFlows" ]]; then
+    if [[ "$APP" == "Channels" || "$APP" == "Emby" || "$APP" == "ErsatzTV" || "$APP" == "Frigate" || "$APP" == "Jellyfin" || "$APP" == "Plex" || "$APP" == "Scrypted" || "$APP" == "Tdarr" || "$APP" == "Unmanic" || "$APP" == "Ollama" || "$APP" == "FileFlows" || "$APP" == "Kodi" ]]; then
       if [[ -e "/dev/dri/renderD128" ]]; then
         if [[ -e "/dev/dri/card0" ]]; then
           cat <<EOF >>$LXC_CONFIG
@@ -1193,7 +1193,7 @@ http://dl-cdn.alpinelinux.org/alpine/latest-stable/community
 EOF'
     pct exec "$CTID" -- ash -c "apk add bash >/dev/null"
   fi
-  lxc-attach -n "$CTID" -- bash -c "$(curl -fsSL https://raw.githubusercontent.com/community-scripts/ProxmoxVE/main/install/$var_install.sh)" || exit $?
+  lxc-attach -n "$CTID" -- bash -c "$(curl -fsSL https://raw.githubusercontent.com/chrjabs/ProxmoxVE/main/install/$var_install.sh)" || exit $?
 
 }
 
